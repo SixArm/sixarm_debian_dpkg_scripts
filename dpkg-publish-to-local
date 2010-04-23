@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# Debian package manager utility to publish our custom packages
+# from their various build locations to our localhost repo.
+#
+# Before you use this command, be sure that the packages
+# have already been built in their respective directories.
+#
+# We build our packages in directories like this:
+#
+#    ~/github/foo/foo-1.1.1.deb
+#    ~/github/bar/bar-2.2.2.deb
+#    ...
+#
+# We publish to our locahost repo here:
+#
+#    ~/deb/repository/binary/
+#
+# This repo is our area for local testing
+# and staging to publish to our main website.
+
+mkdir -p ~/deb/repository/binary
+mkdir -p ~/deb/repository/source
+rsync -r --delete ~/github/sixarm_debian_*/*.deb ~/deb/repository/binary/

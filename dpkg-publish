@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# Create a local repo for deb packages.
+#
+# This calls commands to:
+#   1. generate our custom debian packages,
+#   2. sync them from their separate local directories to one local repo
+#   3. sync them from the local repo to the remote repo, i.e. publish to our website
+
+dpkg-publish-to-localhost
+cd ~/deb/repository && dpkg-scan && cd ..
+dpkg-publish-to-remote
+

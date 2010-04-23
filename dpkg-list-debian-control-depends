@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Script to aggregate dependencies of our SixArm debian packages,
+# then print the results in as HTML using a definition list.
+
+find ~sixarm/github/sixarm_debian_* -name 'control' \
+| sort \
+| xargs grep 'Depends' \
+| perl -p -e 's#/DEBIAN/control:Depends: *#:#; s#^.*/(.*):#<dt>$1</dt><dd>#; s#\s*,\s*#, #gm; s#\n#</dd>\n##;'
+

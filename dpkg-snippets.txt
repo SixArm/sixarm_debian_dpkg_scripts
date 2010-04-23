@@ -1,0 +1,20 @@
+# Snippets to help create debian packages
+
+cd foo-package
+emacs README
+rm *.deb
+cd *package
+dpkg-gunzip-docs
+emacs \
+ ./DEBIAN/control \
+ ./usr/bin/* \
+ ./usr/share/doc/*/copyright \
+ ./usr/share/doc/*/changelog \
+ ./usr/share/man/man1/*1
+cp ./usr/share/doc/*/changelog ./usr/share/doc/*/changelog.Debian
+find ../ | grep  \~ | xargs rm
+dpkg-gzip-docs
+cd ..
+dpkg-build *stack*
+git add * && git commit -m 'update' -a && git push
+

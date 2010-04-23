@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+# Clone a new Debian package (i.e. dpkg deb file) 
+# by copying an existing package directory, then
+# moving the files and doing search/replace on words.
+#
+# ==Example
+#   dpkg-clone foo-1.2.3 bar-4.5.6
+
+src_pkg=$1
+dst_pkg=$2
+
+
+# Get the first part of a package name,
+# everything up to the dash version number.
+#
+# Example:
+#   pkg_basename "foo-bar-1.2.3"
+#   => "foo-bar"
+
+function pkg_basename () {
+  expr match $1 '\([-a-z0-9]*\)-[0-9]'
+}
+
+src_pkg_basename="$(pkg_basename $src_pkg)"
+dst_pkg_basename="$(pkg_basename $dst_pkg)"
+
+echo "src $src_pkg_basename"
+echo "dst $dst_pkg_basename"
+
+## Copy files 
+
+cp -R $src_pkg $dst_pkg
+cd $dst_pkg
+mv usr/bin/$src_pkg_basename usr/bin/$dst_pkg_basename
+mv usr/share/doc/$src_pkg_basename usr/share/doc/$dst_pkg_basename
+mv usr/share/man/man1/$src_pkg_basename.1.gz usr/share/man/man1/$dst_pkg_basename.1.gz
+
+## Substitute text
+
+gunzip usr/share/doc/$dst_pkg_basename/*.gz
+gunzip usr/share/man/man1/$dst_pkg_basename.1.gz
+perl -p -i -e "s/$src_pkg/$dst_pkg/g" DEBIAN/control usr/share/doc/$dst_pkg_basename/changelog* usr/share/man/man1/$dst_pkg_basename.1
+perl -p -i -e "s/$src_pkg_basename/$dst_pkg_basename/g" DEBIAN/control usr/share/doc/$dst_pkg_basename/changelog* usr/share/man/man1/$dst_pkg_basename.1
+
+## Advice
+
+echo "Next you need to edit the various files,"
+echo "for example DEBIAN/control and the doc pages."
+echo "When you're done, you also need to zip the doc pages"
+echo "e.g. gzip -9 $dst_pkg_basename.1"
+
+echo "== What to do"
+echo "cd $dst_pkg"
+echo "emacs DEBIAN/control usr/bin/* usr/share/man/man1/*.1 usr/share/doc/*/*"
+echo "== Zip these files"
+echo "gzip -9 usr/share/man/man1/*.1"
+echo "gzip -9 usr/share/doc/*/changelog"
+echo "gzip -9 usr/share/doc/*/changelog.Debian"
+echo "== Build"
+echo "cd .."
+echo "fakeroot dpkg-deb --build $dst_pkg"
+echo "lintian $dst_pkg.deb"
+echo "== Publish"
+echo "scp -P 7022 $dst_pkg.deb joel@webget.com:/www/html/deb/"
