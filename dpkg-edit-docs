@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Script to edit all our relevant dpkg files.
+#
+# See:
+#   dpkg-edited-docs
+#   dpkg-gzip-docs
+#   dpkg-gunzip-docs
+
+
+emacs -nw \
+ ./DEBIAN/control \
+ ./usr/bin/* \
+ ./usr/share/doc/*/copyright \
+ ./usr/share/doc/*/changelog \
+ ./usr/share/man/man1/*1
+

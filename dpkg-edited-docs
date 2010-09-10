@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# Script to call after editing all our relevant dpkg files.
+#
+# See:
+#   dpkg-edit-docs
+#   dpkg-gzip-docs
+#   dpkg-gunzip-docs
+
+cp ./usr/share/doc/*/changelog ./usr/share/doc/*/changelog.Debian
+find ../ | grep  \~ | xargs rm
+
