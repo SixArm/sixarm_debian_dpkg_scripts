@@ -5,16 +5,11 @@ emacs README
 rm *.deb
 cd *package
 dpkg-gunzip-docs
-emacs \
- ./DEBIAN/control \
- ./usr/bin/* \
- ./usr/share/doc/*/copyright \
- ./usr/share/doc/*/changelog \
- ./usr/share/man/man1/*1
+dpkg-edit-docs
 cp ./usr/share/doc/*/changelog ./usr/share/doc/*/changelog.Debian
 find ../ | grep  \~ | xargs rm
 dpkg-gzip-docs
 cd ..
-dpkg-build *stack*
+dpkg-build *packages*
 git add * && git commit -m 'update' -a && git push
 

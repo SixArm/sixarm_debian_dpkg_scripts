@@ -7,7 +7,7 @@
 #   2. sync them from their separate local directories to one local repo
 #   3. sync them from the local repo to the remote repo, i.e. publish to our website
 
-dpkg-publish-to-localhost
+dpkg-publish-to-local
 cd ~/deb/repository && dpkg-scan && cd ..
 dpkg-publish-to-remote
 
