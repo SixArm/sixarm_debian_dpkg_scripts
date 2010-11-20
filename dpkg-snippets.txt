@@ -6,8 +6,8 @@ rm *.deb
 cd *package
 dpkg-gunzip-docs
 dpkg-edit-docs
-cp ./usr/share/doc/*/changelog ./usr/share/doc/*/changelog.Debian
-find ../ | grep  \~ | xargs rm
+# ...now edit your docs...
+dpkg-edited-docs
 dpkg-gzip-docs
 cd ..
 dpkg-build *packages*
