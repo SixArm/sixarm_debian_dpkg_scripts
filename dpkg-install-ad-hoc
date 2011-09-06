@@ -1,0 +1,5 @@
+#!/bin/sh
+# Install all the sixarm debian packages ad hoc,
+# by grepping the control files for package names.
+# We can use this is when the package server is off.
+find ~sixarm/git/*/*/DEBIAN/control | xargs grep -h '^Depends: ' | sed 's/Depends: //; s/,/ /g' | grep -v 'sixarm-' | xargs sudo apt-get install --fix-broken --fix-missing --yes
