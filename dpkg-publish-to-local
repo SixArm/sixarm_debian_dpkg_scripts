@@ -8,8 +8,8 @@
 #
 # We build our packages in directories like this:
 #
-#    ~/github/foo/foo-1.1.1.deb
-#    ~/github/bar/bar-2.2.2.deb
+#    ~/git/foo/foo-1.1.1.deb
+#    ~/git/bar/bar-2.2.2.deb
 #    ...
 #
 # We publish to our locahost repo here:
@@ -21,4 +21,4 @@
 
 mkdir -p ~/deb/repository/binary
 mkdir -p ~/deb/repository/source
-rsync -r --delete ~/github/sixarm_debian_*/*.deb ~/deb/repository/binary/
+rsync -r --delete ~/git/sixarm_debian_*/*.deb ~/deb/repository/binary/
