@@ -3,4 +3,4 @@
 # Sync the local repo to the remote repo.
 # This is effectively a "publish" command.
 
-rsync -r -v --delete ~/deb/repository/ sixarm.com:/www/sixarm.com/html/deb/repository/
+rsync -r -v --delete ~/deb/repository/ sixarm.com:/var/www/sixarm.com/html/deb/repository/
