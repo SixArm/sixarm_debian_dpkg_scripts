@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Script to aggregate dependencies of our SixArm debian packages,
+# Script to aggregate dependencies of our custom packages,
 # then print the results in as HTML using a definition list.
 
 find ~sixarm/git/sixarm_debian_* -name 'control' \

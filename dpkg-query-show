@@ -1,1 +1,3 @@
+#!/bin/bash
+# Debian packaging: query show with prettier output
 dpkg-query-show-tsv $@ | sed 's/\t/\n/g'

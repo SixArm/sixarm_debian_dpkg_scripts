@@ -1,2 +1,4 @@
+#!/bin/bash
+# Debian packaging: scan packages and scan sources to create .gz file
 dpkg-scanpackages binary /dev/null | gzip -9c > binary/Packages.gz
 dpkg-scansources source /dev/null | gzip -9c > source/Sources.gz

@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# Build a debian package by using dpkg-deb, 
-# then verify it is correct by using lintian.
+# Build a debian package via dpkg-deb and verify via lintian.
 
 fakeroot dpkg-deb --build $1 && lintian $1.deb

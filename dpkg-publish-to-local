@@ -1,6 +1,8 @@
 #!/bin/sh
 #
-# Debian package manager utility to publish our custom packages
+# Debian packaging utility to publish our custom packages.
+#
+# This command publishes our packages from our local host,
 # from their various build locations to our localhost repo.
 #
 # Before you use this command, be sure that the packages

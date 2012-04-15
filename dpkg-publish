@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Create a local repo for deb packages.
+# Publish our deb packages to our local host and remote host.
 #
 # This calls commands to:
 #   1. generate our custom debian packages,

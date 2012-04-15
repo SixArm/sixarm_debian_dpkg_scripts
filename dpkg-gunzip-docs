@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Script to gunzip all our relevant dpkg files.
+# Script to gunzip all our relevant dpkg docs files.
 # Compare dpkg-gzip-docs.
 
 gunzip ./usr/share/doc/*/changelog.gz ./usr/share/doc/*/changelog.Debian.gz ./usr/share/man/man1/*1.gz
