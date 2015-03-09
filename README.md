@@ -1,4 +1,4 @@
-# SixArm.com » Debian » <br> Package utilities for dpkg command
+# Debian » <br> Package utilities for dpkg command
 
 We build custom debian packages for our servers and desktops.
 
